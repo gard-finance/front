@@ -45,17 +45,15 @@ export interface Token {
   logo: string;
 }
 
-
+export const beefy_address: string = ""
+export const rpc: string = ""
+//export const provider_eth = new ethers.providers.JsonRpcProvider(rpc);
+//export const beefyContract = new ethers.Contract(beefy_address, beefy_abi, provider_eth);
+//export const provider_stk = new Provider({ sequencer: { network: constants.NetworkName.SN_GOERLI } });
 
 const getData = (tokens: IPoolData[]): IResultData[] => {
-  const beefy_address: string = ""
-  const rpc: string = ""
-
-  //const provider_eth = new ethers.providers.JsonRpcProvider(rpc);
-  //const beefyContract = new ethers.Contract(beefy_address, beefy_abi, provider_eth);
 
   let tab: IResultData[] = []
-  //const provider_stk = new Provider({ sequencer: { network: constants.NetworkName.SN_GOERLI } });
 
   tokens.forEach(async el => {
 

@@ -10,7 +10,10 @@ import { useState } from "react";
 
 export default function ComponentPage({ params }: { params: { token: string } }) {
   const pool = pools.find(el => el.symbol.toLowerCase() == params.token.toLowerCase())
-  const [value, setValue] = useState("")
+  const [value, setValue] = useState(0.0)
+  const [depositHidden, setDepositHidden] = useState(false)
+  const [claimHidden, setClaimHidden] = useState(true)
+
   if (!pool) { throw new Error("wrong pool") }
 
   return (
@@ -34,19 +37,28 @@ export default function ComponentPage({ params }: { params: { token: string } })
               type="text"
               value={value}
               placeholder={"0 " + pool.symbol}
-              onChange={e => { setValue(e.currentTarget.value); }}
+              onChange={e => { setValue(parseFloat(e.currentTarget.value)); }}
             />
-            <Button>Max</Button>
+            <Button onClick={applyMax}>Max</Button>
           </div>
           <div className='flex flex-col gap-3 items-center'>
-            <Button className="w-full" variant="light">Deposit</Button>
-            <Button className="w-full" variant="light">Claim</Button>
+            <Button className="w-full" variant="light" disabled={depositHidden} onClick={callContractDeposit}>Deposit</Button>
+            <Button className="w-full" variant="light" disabled={claimHidden} onClick={callContractClaim}>Claim</Button>
           </div>
-
         </div>
-
       </section>
     </main>
   )
+
+  function callContractDeposit() {
+
+  }
+  function callContractClaim() {
+
+  }
+
+  function applyMax() {
+    setValue(0)
+  }
 }
 
