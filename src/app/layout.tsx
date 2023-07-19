@@ -3,13 +3,12 @@ import * as React from 'react';
 
 import '@/styles/globals.css';
 
+import { Config } from '@/components/Config';
 import Footer from '@/components/sections/Footer';
 import Header from '@/components/sections/Header';
 
 import { siteConfig } from '@/constant/config';
 
-// !STARTERCONF Change these default meta
-// !STARTERCONF Look at @/constant/config to change them
 export const metadata: Metadata = {
   title: {
     default: siteConfig.title,
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   robots: { index: true, follow: true },
   icons: {
-    icon: '/favicon/favicon.ico',
+    icon: '/favicon.ico',
   },
   openGraph: {
     url: siteConfig.url,
@@ -44,10 +43,12 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body className='bg-black text-white'>
-        <Header />
-        {children}
-        <Footer />
+      <body className='bg-black text-white h-screen flex flex-col justify-between'>
+        <Config>
+          <Header />
+          {children}
+          <Footer />
+        </Config>
       </body>
     </html>
   );
